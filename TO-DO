@@ -1,0 +1,2 @@
+Test out LabelFrame for raw lines and for final Pantoum, especially see how the label can be dynamically changed.
+Test whether I need to use tk.StringVar for tk.Entry text values to connect the value fields
