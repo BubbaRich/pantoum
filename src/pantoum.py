@@ -1,4 +1,5 @@
 from colorama import Fore, init
+from sys import stdout
 #pantoum is 4-tuple of stanzas
 #stanza is list of 4 lines
 #line is a string
@@ -33,7 +34,7 @@ class pantoum:
         init(autoreset=True)
         self.first_line_last = first_line_last
         stanza = []
-        self.raw_title = ""
+        self.title = ""
         self.raw_lines = []
         for ii in range(4):
             stanza.append(4 * [""])
@@ -73,17 +74,17 @@ class pantoum:
                            4:Fore.MAGENTA}
 
 
-    def print_col(self, color_num, line):
-        print(self.color_code[color_num] + line)
+    def print_col(self, color_num, line, outfile=stdout):
+        print(self.color_code[color_num] + line, file=outfile, flush=True)
 
-    def print_pantoum(self):
+    def print_pantoum(self, outfile=stdout):
         '''pretty print pantoum in 4 colors (each pair of rhyming lines
            and copies)'''
         for stanza_num in range(4):
             for line_num in range(4):
-                self.print_col(self.color_map[(stanza_num, line_num)], self.stanza[stanza_num][line_num])
+                self.print_col(self.color_map[(stanza_num, line_num)], self.stanza[stanza_num][line_num], outfile)
                 #print(self.color_map[(stanza_num, line_num)], self.stanza[stanza_num][line_num])
-            print()
+            print(file=outfile)
         #print(f"raw_lines = {self.raw_lines}")
         #print(f"stanzas = {self.stanza}")
     
